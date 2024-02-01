@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_projects/multiple_selection/filter_view.dart';
+import 'package:getx_projects/multiple_selection/home_page.dart';
 
-import 'item_counter/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Getx Demo',
-      home:  HomePage(),
+      home:  MainView(),
     );
   }
 }
