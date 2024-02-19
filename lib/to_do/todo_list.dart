@@ -20,47 +20,31 @@ class TodoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-         onTap: (index){
-           if(index == 1){
-           }
-         },
-          
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add Page'),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.done),
-              label: "Done To-Dos",
-
-
-          )
-          ]),
       appBar: AppBar(
         title: Text("To Do"),
-      ),
-      body: Column(
-        children: [
-          Obx( ()=> Expanded(
-            child: ListView.builder(
-                itemCount: c.tasks.length ,
-                  itemBuilder: (context, index){
-                    return Obx(
-                      ()=> CheckboxListTile(
-                          value: c.tasks[index].isDone,
-                          onChanged: (value){
-                            c.toggleTaskCompletion(index);
-                            print(c.tasks[index].isDone);
-                          },
-                          title: Text(c.tasks[index].title),
-                        ),
-                    );
-                  }),
-          ),
-          ),
-          ElevatedButton(onPressed: (){
-            Get.to(DonePage());
-          }, child: Text('Done'))
+        actions: [
+          IconButton(onPressed: (){
+            Get.to(()=> DonePage());
+          }, icon: Icon(Icons.done))
         ],
+      ),
+      body: Obx( ()=> ListView.builder(
+          itemCount: c.tasks.length ,
+            itemBuilder: (context, index){
+              return Obx( ()=> CheckboxListTile(
+                      value: c.taskDone[index],
+                      onChanged: (value){
+                        c.toggleTaskCompletion(index);
+                        print(c.taskDone);
+                      },
+                      title: Text(
+                        c.tasks[index].title,
+                        style: TextStyle(
+                          decoration: c.taskDone[index] ? TextDecoration.lineThrough : TextDecoration.none,
+                        ), ),
+                    ),
+              );
+            }),
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){
         showModalBottomSheet(
@@ -72,6 +56,7 @@ class TodoView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
+                      autofocus: true,
                       controller: title,
                       decoration: InputDecoration(
                         hintText: 'Write your todo',

@@ -1,11 +1,13 @@
 
 
-class Task{
+import 'package:get/get.dart';
+
+class Task extends GetxController{
 
   final String title;
-   bool isDone;
 
-  Task({required this.title,  this.isDone = false});
+
+  Task({required this.title});
 
 
 }

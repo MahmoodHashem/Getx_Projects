@@ -19,19 +19,23 @@ class DonePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Done to-dos'),
         ),
-        body: ListView.builder(
-          itemCount: c.tasks.length,
-            itemBuilder: (context, index){
-              if(c.tasks[index].isDone){
-                return CheckboxListTile(
-                  value: true,
-                  onChanged: (value){},
-                  title: Text(c.tasks[index].title),
-                );
-              }else{
-                return SizedBox();
-              }
-            }),
+        body: Obx(()=> ListView.builder(
+            itemCount: c.taskDone.length,
+              itemBuilder: (context, index){
+                if(c.taskDone[index]){
+                  return Obx(()=> CheckboxListTile(
+                      value: c.taskDone[index],
+                      onChanged: (value){
+                        c.toggleTaskCompletion(index);
+                      },
+                      title: Text(c.tasks[index].title),
+                    ),
+                  );
+                }else{
+                  return SizedBox();
+                }
+              }),
+        ),
       ),
     );
   }
