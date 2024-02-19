@@ -18,8 +18,7 @@ class ViewPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            '''این برنامه برای حدس تاریخ تولد تان ساخته شده است که فقط جنبه سرگرمی دارد. 
-            برای شروع دکمه پایین را بزنید ''',
+            '''این برنامه برای حدس تاریخ تولد تان ساخته شده است\nبرای شروع دکمه پایین را بزنید''',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 22,
